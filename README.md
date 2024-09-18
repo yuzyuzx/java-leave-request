@@ -1,3 +1,0 @@
-# java-leave-request
-
-## Task
