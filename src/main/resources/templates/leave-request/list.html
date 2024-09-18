@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>申請一覧 | 休暇申請アプリケーション</title>
+</head>
+<body>
+<h1>申請一覧</h1>
+<a href="../index.html" th:href="@{/}">トップページ</a>
+<a href="./creationForm.html" th:href="@{/leave-request/creationForm}">作成</a>
+<table>
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>概要</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="v : ${leaveRequestList}">
+    <th th:text="${v.id}">(id)</th>
+    <td th:text="${v.summary}">(summary)</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

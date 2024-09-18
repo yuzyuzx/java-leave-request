@@ -1,13 +1,13 @@
-package com.example.reave_request;
+package com.example.leave_request;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReaveRequestApplication {
+public class LeaveRequestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReaveRequestApplication.class, args);
+		SpringApplication.run(LeaveRequestApplication.class, args);
 	}
 
 }

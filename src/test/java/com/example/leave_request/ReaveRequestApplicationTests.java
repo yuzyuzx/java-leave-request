@@ -1,4 +1,4 @@
-package com.example.reave_request;
+package com.example.leave_request;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
