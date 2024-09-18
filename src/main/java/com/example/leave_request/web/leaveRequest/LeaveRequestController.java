@@ -2,7 +2,6 @@ package com.example.leave_request.web.leaveRequest;
 
 import com.example.leave_request.domain.leaveRequest.LeaveRequestService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/leave-request")
 public class LeaveRequestController {
 
-  private final LeaveRequestService LeaveRequestService;
+  private final LeaveRequestService leaveRequestService;
 
   @GetMapping
   public String showList(Model model) {
-    model.addAttribute("leaveRequestList", LeaveRequestService.findAll());
+    model.addAttribute("leaveRequestList", leaveRequestService.findAll());
     return "leave-request/list";
   }
 
@@ -30,6 +29,7 @@ public class LeaveRequestController {
 
   @PostMapping
   public String create(LeaveRequestForm form, Model model) {
+    leaveRequestService.create(form.getSummary(), form.getDescription());
     return showList(model);
   }
 }

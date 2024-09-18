@@ -14,4 +14,8 @@ public class LeaveRequestService {
   public List<LeaveRequestEntity> findAll() {
     return leaveRequestRepository.findAll();
   }
+
+  public void create(String summary, String description) {
+    leaveRequestRepository.insert(summary, description);
+  }
 }
