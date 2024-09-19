@@ -14,4 +14,8 @@ public interface LeaveRequestRepository {
 
   @Insert("insert into issues (summary, description) values (#{summary}, #{description})")
   void insert(@Param("summary") String summary, @Param("description") String description);
+
+  @Select("select * from issues where id = #{issueId}")
+  LeaveRequestEntity findById(long requestId);
+
 }

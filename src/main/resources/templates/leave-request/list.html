@@ -17,8 +17,13 @@
   </thead>
   <tbody>
   <tr th:each="v : ${leaveRequestList}">
-    <th th:text="${v.id}">(id)</th>
-    <td th:text="${v.summary}">(summary)</td>
+<!--    <th th:text="${v.id}">(id)</th>-->
+<!--    <td th:text="${v.summary}">(summary)</td>-->
+    <td>
+      <a href="./detail.html" th:href="@{/leave-request/{requestId}(requestId=${v.id})}" th:text="${v.id}">
+        申請$v.id
+      </a>
+    </td>
   </tr>
   </tbody>
 </table>
