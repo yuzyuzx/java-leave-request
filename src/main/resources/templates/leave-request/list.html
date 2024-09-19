@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>申請一覧 | 休暇申請アプリケーション</title>
+  <style>
+    table {
+      border-collapse: collapse; /* セルの境界線をまとめる */
+      width: 100%; /* テーブルを100%幅に */
+    }
+    th, td {
+      border: 1px solid black; /* セルに黒い罫線を引く */
+      padding: 8px; /* セル内に余白を設定 */
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
 <h1>申請一覧</h1>
@@ -11,19 +22,25 @@
 <table>
   <thead>
   <tr>
-    <th>#</th>
-    <th>概要</th>
+    <th>リンク</th>
+    <th>申請日</th>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>ステータス</th>
   </tr>
   </thead>
   <tbody>
   <tr th:each="v : ${leaveRequestList}">
-<!--    <th th:text="${v.id}">(id)</th>-->
-<!--    <td th:text="${v.summary}">(summary)</td>-->
     <td>
-      <a href="./detail.html" th:href="@{/leave-request/{requestId}(requestId=${v.id})}" th:text="${v.id}">
-        申請$v.id
+      <a href="./detail.html"
+        th:href="@{/leave-request/{requestId}(requestId=${v.id})}" th:text="詳細画面" >
+        詳細画面
       </a>
     </td>
+    <td th:text="${v.requestDate}">申請日</td>
+    <td th:text="${v.startDate}">開始日</td>
+    <td th:text="${v.endDate}">終了日</td>
+    <td th:text="承認済">承認済</td>
   </tr>
   </tbody>
 </table>

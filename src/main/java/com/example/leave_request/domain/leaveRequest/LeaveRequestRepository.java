@@ -9,13 +9,13 @@ import java.util.List;
 
 @Mapper
 public interface LeaveRequestRepository {
-  @Select("select * from issues")
+  @Select("select * from leave_request")
   List<LeaveRequestEntity> findAll();
 
   @Insert("insert into issues (summary, description) values (#{summary}, #{description})")
   void insert(@Param("summary") String summary, @Param("description") String description);
 
-  @Select("select * from issues where id = #{issueId}")
+  @Select("select * from leave_request where id = #{requestId}")
   LeaveRequestEntity findById(long requestId);
 
 }
