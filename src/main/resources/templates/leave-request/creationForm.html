@@ -6,22 +6,36 @@
 </head>
 <body>
 <h1>休暇申請作成</h1>
+<div>
+  <a href="./list.html">一覧画面</a>
+</div>
+<br>
 <form action="#" th:action="@{/leave-request}" th:method="post" th:object="${leaveRequestForm}">
   <div>
-    <label for="summaryInput">ダミー</label>
-    <input type="text" id="summaryInput" th:field="*{summary}">
+    <label for="request_date">申請日: </label>
+    <input type="date" id="request_date" th:field="*{requestDate}" />
   </div>
-
   <div>
-    <label for="requestDate">申請日: </label>
-    <input type="date" id="requestDate" name="request-date" />
+    <label for="start_date">開始日: </label>
+    <input type="date" id="start_date" th:field="*{startDate}" />
   </div>
-<!--  <div>-->
-<!--    <label for="descriptionInput">ダミー</label>-->
-<!--    <input type="text" id="descriptionInput" th:field="*{description}"></input>-->
-<!--  </div>-->
   <div>
-    <button type="submit">作成</button>
+    <label for="end_date">終了日: </label>
+    <input type="date" id="end_date" th:field="*{endDate}" />
+  </div>
+  <br />
+  <div>
+    <button type="submit">下書き保存をする</button>
+  </div>
+  <br />
+  <div>
+    <button type="submit">承認申請をする</button>
+    <br>
+  </div>
+  <br />
+  <div>
+    <button type="submit">申請を削除する</button>
+    <br>
   </div>
 </form>
 </body>

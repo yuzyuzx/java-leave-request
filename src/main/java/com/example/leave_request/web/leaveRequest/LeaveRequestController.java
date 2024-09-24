@@ -25,15 +25,14 @@ public class LeaveRequestController {
     return "leave-request/list";
   }
 
-  @GetMapping("creationForm")
+  @GetMapping("/creationForm")
   public String showCreationForm(@ModelAttribute LeaveRequestForm form) {
     return "leave-request/creationForm";
   }
 
   @PostMapping
   public String create(LeaveRequestForm form, Model model) {
-//    leaveRequestService.create(form.getSummary(), form.getDescription());
-    leaveRequestService.create(form.getSummary(), "");
+    leaveRequestService.create(form.getRequestDate(), form.getStartDate(), form.getEndDate(), '1');
     return showList(model);
   }
 

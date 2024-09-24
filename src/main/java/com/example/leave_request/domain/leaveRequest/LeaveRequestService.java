@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -17,8 +18,8 @@ public class LeaveRequestService {
   }
 
   @Transactional
-  public void create(String summary, String description) {
-    leaveRequestRepository.insert(summary, description);
+  public void create(LocalDate requestDate, LocalDate startDate, LocalDate endDate, char status) {
+    leaveRequestRepository.insert(requestDate, startDate, endDate, status);
   }
 
   public LeaveRequestEntity findById(long requestId) {

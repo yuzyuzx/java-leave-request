@@ -18,7 +18,7 @@
 <body>
 <h1>休暇申請一覧</h1>
 <a href="../index.html" th:href="@{/}">トップページ</a>
-<a href="./creationForm.html" th:href="@{/leave-request/creationForm}">作成</a>
+<a href="./creationForm.html" th:href="@{/leave-request/creationForm?type=new}">作成</a>
 <table>
   <thead>
   <tr>
@@ -33,7 +33,7 @@
   <tr th:each="v : ${leaveRequestList}">
     <td>
       <a href="./detail.html"
-        th:href="@{/leave-request/{requestId}(requestId=${v.id})}" th:text="詳細画面" >
+        th:href="@{/leave-request/{requestId}(requestId=${v.id})}" th:text="申請詳細画面" >
         詳細画面
       </a>
     </td>
