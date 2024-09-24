@@ -32,7 +32,7 @@ public class LeaveRequestController {
 
   @PostMapping
   public String create(LeaveRequestForm form, Model model) {
-    leaveRequestService.create(form.getRequestDate(), form.getStartDate(), form.getEndDate(), '1');
+    leaveRequestService.create(form.getRequestDate(), form.getStartDate(), form.getEndDate(), form.getStatus());
     return showList(model);
   }
 

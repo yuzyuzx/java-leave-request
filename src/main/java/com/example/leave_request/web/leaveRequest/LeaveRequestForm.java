@@ -12,6 +12,7 @@ public class LeaveRequestForm {
   private LocalDate startDate;
   private LocalDate endDate;
   private char status;
+
 //  private LocalDateTime createTime;
 //  private LocalDateTime updateTime;
 }
