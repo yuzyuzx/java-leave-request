@@ -33,10 +33,11 @@
     <br>
   </div>
   <br />
-  <div>
-    <button type="submit">申請を削除する</button>
-    <br>
-  </div>
+    <th:block th:if="${param.id[0]} != 'new'">
+      <div>
+        <button type="submit" name="status" value="0">申請を削除する</button>
+      </div>
+    </th:block>
 </form>
 </body>
 </html>
