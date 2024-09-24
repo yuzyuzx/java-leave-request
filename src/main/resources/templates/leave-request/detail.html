@@ -8,8 +8,17 @@
 <h1>申請詳細</h1>
 <a href="./list.html" th:href="@{/leave-request}">一覧に戻る</a>
 <div>
-  <h2 th:text="${leaveRequest.summary}">(summary)</h2>
-  <p th:text="${leaveRequest.description}">(description)</p>
+  <p th:text="'申請日: ' + ${leaveRequest.requestDate}"></p>
+  <p th:text="'開始日: ' + ${leaveRequest.startDate}"></p>
+  <p th:text="'終了日: ' + ${leaveRequest.endDate}"></p>
+  <p th:if="${leaveRequest.status == '1'}">下書き</p>
+  <p th:if="${leaveRequest.status == '1'}"></p>
+<!--    <p th:text="下書き">下書き</p>-->
+<!--  </p:block>-->
+<!--  <p:block th:if="${leaveRequest.status == '2'}">-->
+<!--    <p th:text="承認済">承認済</p>-->
+<!--  </p:block>-->
+  <p th:text="'ステータス: ' + ${leaveRequest.status}"></p>
 </div>
 </body>
 </html>

@@ -16,7 +16,7 @@
   </style>
 </head>
 <body>
-<h1>申請一覧</h1>
+<h1>休暇申請一覧</h1>
 <a href="../index.html" th:href="@{/}">トップページ</a>
 <a href="./creationForm.html" th:href="@{/leave-request/creationForm}">作成</a>
 <table>
@@ -24,8 +24,8 @@
   <tr>
     <th>リンク</th>
     <th>申請日</th>
-    <th>開始日</th>
-    <th>終了日</th>
+<!--    <th>開始日</th>-->
+<!--    <th>終了日</th>-->
     <th>ステータス</th>
   </tr>
   </thead>
@@ -38,8 +38,8 @@
       </a>
     </td>
     <td th:text="${v.requestDate}">申請日</td>
-    <td th:text="${v.startDate}">開始日</td>
-    <td th:text="${v.endDate}">終了日</td>
+<!--    <td th:text="${v.startDate}">開始日</td>-->
+<!--    <td th:text="${v.endDate}">終了日</td>-->
     <td th:text="承認済">承認済</td>
   </tr>
   </tbody>
