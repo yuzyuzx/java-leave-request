@@ -7,21 +7,25 @@
 <body>
 <h1>休暇申請作成</h1>
 <div>
-  <a href="./list.html">一覧画面</a>
+  <a href="./list.html" th:href="@{/leave-request}">一覧に戻る</a>
 </div>
 <br>
-<form action="#" th:action="@{/leave-request}" th:method="post" th:object="${leaveRequestForm}">
+<!--<form action="#" th:action="@{/leave-request}" th:method="post" th:object="${leaveRequestForm}">-->
+<form th:method="post" th:object="${leaveRequestForm}">
   <div>
     <label for="request_date">申請日: </label>
     <input type="date" id="request_date" th:field="*{requestDate}" />
+    <p th:if="${#fields.hasErrors('requestDate')}" th:errors="*{requestDate}">(error)</p>
   </div>
   <div>
     <label for="start_date">開始日: </label>
     <input type="date" id="start_date" th:field="*{startDate}" />
+    <p th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">(error)</p>
   </div>
   <div>
     <label for="end_date">終了日: </label>
     <input type="date" id="end_date" th:field="*{endDate}" />
+    <p th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">(error)</p>
   </div>
   <br />
   <div>
@@ -33,11 +37,11 @@
     <br>
   </div>
   <br />
-    <th:block th:if="${param.id[0]} != 'new'">
+<!--    <th:block th:if="${param.id[0]} != 'new'">-->
       <div>
         <button type="submit" name="status" value="0">申請を削除する</button>
       </div>
-    </th:block>
+<!--    </th:block>-->
 </form>
 </body>
 </html>
