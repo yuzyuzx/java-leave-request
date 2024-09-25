@@ -31,7 +31,8 @@ public class LeaveRequestController {
   }
 
   @GetMapping("/creationForm")
-  public String showCreationForm(@ModelAttribute LeaveRequestForm form) {
+  public String showCreationForm(@ModelAttribute("leaveRequestForm") LeaveRequestForm form) {
+    // idが数値であればデータを取得してフォームに渡す
     return "leave-request/creationForm";
   }
 
@@ -42,7 +43,7 @@ public class LeaveRequestController {
     }
 
     leaveRequestService.create(form.getRequestDate(), form.getStartDate(), form.getEndDate(), form.getStatus());
-    return "redirect:/leave-request";
+    return "redirect:/";
   }
 
   @GetMapping("/{requestId}")
