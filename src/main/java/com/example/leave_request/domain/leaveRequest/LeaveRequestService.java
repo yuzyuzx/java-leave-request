@@ -26,6 +26,11 @@ public class LeaveRequestService {
     leaveRequestRepository.insert(requestDate, startDate, endDate, status);
   }
 
+  @Transactional
+  public void update(long id, LocalDate requestDate, LocalDate startDate, LocalDate endDate, char status) {
+    leaveRequestRepository.update(id, requestDate, startDate, endDate, status);
+  }
+
   public LeaveRequestEntity findById(long requestId) {
     return leaveRequestRepository.findById(requestId);
   }

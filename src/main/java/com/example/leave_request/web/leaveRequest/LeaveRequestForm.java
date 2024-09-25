@@ -20,6 +20,9 @@ public class LeaveRequestForm {
   @NotNull
   private LocalDate endDate;
 
+  @NotNull
+  private String action;
+
   private char status;
 
 //  private LocalDateTime createTime;

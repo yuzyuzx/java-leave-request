@@ -10,6 +10,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -30,19 +32,52 @@ public class LeaveRequestController {
     return "leave-request/draft-list";
   }
 
+  /**
+   * 新規作成時のidパラメータは「0」にしている
+   * @param form
+   * @param id
+   * @return
+   */
   @GetMapping("/creationForm")
-  public String showCreationForm(@ModelAttribute("leaveRequestForm") LeaveRequestForm form) {
-    // idが数値であればデータを取得してフォームに渡す
+  public String showCreationForm(@ModelAttribute("leaveRequestForm") LeaveRequestForm form, @RequestParam("id") long id) {
+    LeaveRequestEntity obj = leaveRequestService.findById(id);
+
+    if(obj == null) {
+      return "leave-request/creationForm";
+    }
+
+    form.setRequestDate(obj.getRequestDate());
+    form.setStartDate(obj.getStartDate());
+    form.setEndDate(obj.getEndDate());
+
     return "leave-request/creationForm";
   }
 
   @PostMapping("/creationForm")
-  public String create(@Validated LeaveRequestForm form, BindingResult bindingResult) {
+  public String dbOperation(@Validated LeaveRequestForm form, BindingResult bindingResult, @RequestParam("id") long id) {
     if(bindingResult.hasErrors()) {
-      return showCreationForm(form);
+      return showCreationForm(form, id);
     }
 
-    leaveRequestService.create(form.getRequestDate(), form.getStartDate(), form.getEndDate(), form.getStatus());
+    char status = switch(form.getAction()) {
+      case "draft" -> '1';
+      case "approve" -> '2';
+      case "delete" -> '3';
+      default -> '0';
+    };
+
+    if(status == '3') {
+      // 削除処理
+    }
+
+    // 新規登録
+    if(id == 0) {
+      leaveRequestService.create(form.getRequestDate(), form.getStartDate(), form.getEndDate(), status);
+      return "redirect:/";
+    }
+
+    // 更新処理
+    leaveRequestService.update(id, form.getRequestDate(), form.getStartDate(), form.getEndDate(), status);
     return "redirect:/";
   }
 
