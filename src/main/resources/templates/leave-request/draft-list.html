@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>下書き申請一覧 | 休暇申請アプリケーション</title>
+  <style>
+    table {
+      border-collapse: collapse; /* セルの境界線をまとめる */
+      width: 100%; /* テーブルを100%幅に */
+    }
+    th, td {
+      border: 1px solid black; /* セルに黒い罫線を引く */
+      padding: 8px; /* セル内に余白を設定 */
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+<h1>下書き申請一覧</h1>
+<a href="../index.html" th:href="@{/}">トップページ</a>
+<table>
+  <thead>
+  <tr>
+    <th>リンク</th>
+    <th>申請日</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="v : ${leaveRequestList}">
+    <td>
+      <a
+        href="./creationForm.html"
+        th:href="@{/leave-request/creationForm(id=${v.id})}"
+        th:text="申請編集画面">
+        申請編集画面
+      </a>
+    </td>
+    <td th:text="${v.requestDate}">申請日</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -24,6 +24,12 @@ public class LeaveRequestController {
     return "leave-request/list";
   }
 
+  @GetMapping("/draft-list")
+  public String draftList(Model model) {
+    model.addAttribute("leaveRequestList", leaveRequestService.findAll());
+    return "leave-request/draft-list";
+  }
+
   @GetMapping("/creationForm")
   public String showCreationForm(@ModelAttribute LeaveRequestForm form) {
     return "leave-request/creationForm";
