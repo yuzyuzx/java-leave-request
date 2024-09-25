@@ -7,10 +7,8 @@
 <body>
 <h1>休暇申請作成</h1>
 <div>
-  <a href="./list.html" th:href="@{/leave-request}">一覧に戻る</a>
+  <a href="/" th:href="@{/}">トップに戻る</a>
 </div>
-<br>
-<!--<form action="#" th:action="@{/leave-request}" th:method="post" th:object="${leaveRequestForm}">-->
 <form th:method="post" th:object="${leaveRequestForm}">
   <div>
     <label for="request_date">申請日: </label>

@@ -17,6 +17,10 @@ public class LeaveRequestService {
     return leaveRequestRepository.findAll();
   }
 
+  public List<LeaveRequestEntity> fetchRequestsByStatus(char status) {
+    return leaveRequestRepository.fetchRequestsByStatus(status);
+  }
+
   @Transactional
   public void create(LocalDate requestDate, LocalDate startDate, LocalDate endDate, char status) {
     leaveRequestRepository.insert(requestDate, startDate, endDate, status);

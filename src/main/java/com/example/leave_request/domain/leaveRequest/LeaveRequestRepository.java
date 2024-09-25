@@ -13,6 +13,12 @@ public interface LeaveRequestRepository {
   @Select("select * from leave_request")
   List<LeaveRequestEntity> findAll();
 
+  @Select("select * from leave_request where status = #{status}")
+  List<LeaveRequestEntity> fetchRequestsByStatus(char status);
+
+  @Select("select * from leave_request where id = #{requestId}")
+  LeaveRequestEntity findById(long requestId);
+
   @Insert("insert into leave_request (request_date, start_date, end_date, status, create_time, update_time) values (#{requestDate}, #{startDate}, #{endDate}, #{status}, CURRENT_TIMESTAMP(0), CURRENT_TIMESTAMP(0))")
   void insert(
     @Param("requestDate") LocalDate requestDate,
@@ -20,8 +26,5 @@ public interface LeaveRequestRepository {
     @Param("endDate") LocalDate endDate,
     @Param("status") char status
   );
-
-  @Select("select * from leave_request where id = #{requestId}")
-  LeaveRequestEntity findById(long requestId);
 
 }

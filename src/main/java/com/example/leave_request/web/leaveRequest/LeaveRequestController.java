@@ -20,13 +20,13 @@ public class LeaveRequestController {
 
   @GetMapping
   public String showList(Model model) {
-    model.addAttribute("leaveRequestList", leaveRequestService.findAll());
+    model.addAttribute("approvedLeaveRequestList", leaveRequestService.fetchRequestsByStatus('9'));
     return "leave-request/list";
   }
 
   @GetMapping("/draft-list")
   public String draftList(Model model) {
-    model.addAttribute("leaveRequestList", leaveRequestService.findAll());
+    model.addAttribute("draftLeaveRequestList", leaveRequestService.fetchRequestsByStatus('1'));
     return "leave-request/draft-list";
   }
 

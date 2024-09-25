@@ -26,13 +26,13 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="v : ${leaveRequestList}">
+  <tr th:each="v : ${draftLeaveRequestList}">
     <td>
       <a
         href="./creationForm.html"
         th:href="@{/leave-request/creationForm(id=${v.id})}"
-        th:text="申請編集画面">
-        申請編集画面
+        th:text="編集画面">
+        編集画面
       </a>
     </td>
     <td th:text="${v.requestDate}">申請日</td>
