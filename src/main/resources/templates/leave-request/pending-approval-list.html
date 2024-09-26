@@ -29,8 +29,8 @@
   <tr th:each="v : ${pendingApprovalList}">
     <td>
       <a
-        href="./creationForm.html"
-        th:href="@{/leave-request/creationForm(id=${v.id})}"
+        href="./approve-form.html"
+        th:href="@{/leave-request/approve-form(id=${v.id})}"
         th:text="編集画面">
         編集画面
       </a>

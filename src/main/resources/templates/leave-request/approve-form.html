@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>申請承認</title>
+</head>
+<body>
+<h1>申請承認</h1>
+<div>
+  <a href="/" th:href="@{/}">トップに戻る</a>
+</div>
+<form th:method="post" th:object="${approveForm}">
+  <div>
+    <label for="request_date">申請日: </label>
+    <input type="date" id="request_date" name="requestDate" th:value="*{requestDate == null ? '' : requestDate}" />
+  </div>
+  <div>
+    <label for="start_date">開始日: </label>
+    <input type="date" id="start_date" name="startDate" th:value="*{startDate == null ? '' : startDate}" />
+  </div>
+  <div>
+    <label for="end_date">終了日: </label>
+    <input type="date" id="end_date" name="endDate" th:value="*{endDate == null ? '' : endDate}" />
+  </div>
+  <div>
+    <button type="submit" name="action" value="approve">承認する</button>
+  </div>
+</form>
+</body>
+</html>

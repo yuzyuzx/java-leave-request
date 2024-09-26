@@ -20,6 +20,12 @@ public class LeaveRequestController {
 
   private final LeaveRequestService leaveRequestService;
 
+  @GetMapping("/{requestId}")
+  public String showDetail(@PathVariable("requestId") long requestId, Model model) {
+    model.addAttribute("leaveRequest", leaveRequestService.findById(requestId));
+    return "leave-request/detail";
+  }
+
   @GetMapping
   public String showList(Model model) {
     model.addAttribute("approvedLeaveRequestList", leaveRequestService.fetchRequestsByStatus('9'));
@@ -84,10 +90,30 @@ public class LeaveRequestController {
     return "redirect:/";
   }
 
-  @GetMapping("/{requestId}")
-  public String showDetail(@PathVariable("requestId") long requestId, Model model) {
-    model.addAttribute("leaveRequest", leaveRequestService.findById(requestId));
-    return "leave-request/detail";
+  @GetMapping("/approve-form")
+  public String showApproveForm(@ModelAttribute("approveForm") ApproveForm form, @RequestParam("id") long id) {
+    LeaveRequestEntity obj = leaveRequestService.findById(id);
+
+    if(obj == null) {
+      return "leave-request/approve-form";
+    }
+
+    form.setRequestDate(obj.getRequestDate());
+    form.setStartDate(obj.getStartDate());
+    form.setEndDate(obj.getEndDate());
+
+    return "leave-request/approve-form";
+  }
+
+  @PostMapping("/approve-form")
+  public String dbOperation(@Validated ApproveForm form, BindingResult bindingResult, @RequestParam("id") long id) {
+    if(bindingResult.hasErrors()) {
+      return showApproveForm(form, id);
+    }
+
+    // 更新処理
+    leaveRequestService.update(id, form.getRequestDate(), form.getStartDate(), form.getEndDate(), '9');
+    return "redirect:/";
   }
 
 }

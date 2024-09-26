@@ -2,11 +2,10 @@ package com.example.leave_request.web.leaveRequest;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
 import java.time.LocalDate;
 
 @Data
-public class LeaveRequestForm {
+public class ApproveForm {
 
   @NotNull
   private LocalDate requestDate;
