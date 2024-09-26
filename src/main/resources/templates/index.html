@@ -8,7 +8,6 @@
 <h1>休暇申請アプリケーション</h1>
 <p>
   <a
-    href="./creationForm.html"
     th:href="@{/leave-request/creationForm?id=0}"
     th:text="休暇申請新規登録">
     休暇申請新規登録
@@ -20,6 +19,9 @@
   </li>
   <li>
     <a href="leave-request/draft-list.html" th:href="@{/leave-request/draft-list}">下書き申請一覧</a>
+  </li>
+  <li>
+    <a href="leave-request/pending-approval-list.html" th:href="@{/leave-request/pending-approval-list}">承認待ち申請一覧</a>
   </li>
 </ul>
 </body>

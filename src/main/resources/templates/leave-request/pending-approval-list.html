@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>下書き申請一覧 | 休暇申請アプリケーション</title>
+  <title>承認待ち申請一覧 | 休暇申請アプリケーション</title>
   <style>
     table {
       border-collapse: collapse; /* セルの境界線をまとめる */
@@ -16,7 +16,7 @@
   </style>
 </head>
 <body>
-<h1>下書き申請一覧</h1>
+<h1>承認待ち申請一覧</h1>
 <a href="../index.html" th:href="@{/}">トップページ</a>
 <table>
   <thead>
@@ -26,7 +26,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="v : ${draftList}">
+  <tr th:each="v : ${pendingApprovalList}">
     <td>
       <a
         href="./creationForm.html"

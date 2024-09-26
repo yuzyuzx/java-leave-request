@@ -28,15 +28,18 @@ public class LeaveRequestController {
 
   @GetMapping("/draft-list")
   public String draftList(Model model) {
-    model.addAttribute("draftLeaveRequestList", leaveRequestService.fetchRequestsByStatus('1'));
+    model.addAttribute("draftList", leaveRequestService.fetchRequestsByStatus('1'));
     return "leave-request/draft-list";
+  }
+
+  @GetMapping("/pending-approval-list")
+  public String pendingApprovalList(Model model) {
+    model.addAttribute("pendingApprovalList", leaveRequestService.fetchRequestsByStatus('2'));
+    return "leave-request/pending-approval-list";
   }
 
   /**
    * 新規作成時のidパラメータは「0」にしている
-   * @param form
-   * @param id
-   * @return
    */
   @GetMapping("/creationForm")
   public String showCreationForm(@ModelAttribute("leaveRequestForm") LeaveRequestForm form, @RequestParam("id") long id) {
