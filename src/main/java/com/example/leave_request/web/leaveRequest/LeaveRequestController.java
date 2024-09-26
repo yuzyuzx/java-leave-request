@@ -26,10 +26,10 @@ public class LeaveRequestController {
     return "leave-request/detail";
   }
 
-  @GetMapping
+  @GetMapping("/approved-list")
   public String showList(Model model) {
     model.addAttribute("approvedLeaveRequestList", leaveRequestService.fetchRequestsByStatus('9'));
-    return "leave-request/list";
+    return "leave-request/approved-list";
   }
 
   @GetMapping("/draft-list")
