@@ -64,6 +64,9 @@ public class LeaveRequestController {
 
   @PostMapping("/creationForm")
   public String dbOperation(@Validated LeaveRequestForm form, BindingResult bindingResult, @RequestParam("id") long id) {
+    // 日付チェック
+
+    // 入力チェック
     if(bindingResult.hasErrors()) {
       return showCreationForm(form, id);
     }
