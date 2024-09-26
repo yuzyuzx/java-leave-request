@@ -33,4 +33,9 @@ public interface LeaveRequestRepository {
     @Param("status") char status
   );
 
+  @Delete("delete from leave_request where id = #{id}")
+  void delete(
+    @Param("id") long id
+  );
+
 }

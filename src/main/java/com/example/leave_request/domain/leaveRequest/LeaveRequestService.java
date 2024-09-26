@@ -21,6 +21,10 @@ public class LeaveRequestService {
     return leaveRequestRepository.fetchRequestsByStatus(status);
   }
 
+  public LeaveRequestEntity findById(long requestId) {
+    return leaveRequestRepository.findById(requestId);
+  }
+
   @Transactional
   public void create(LocalDate requestDate, LocalDate startDate, LocalDate endDate, char status) {
     leaveRequestRepository.insert(requestDate, startDate, endDate, status);
@@ -31,7 +35,8 @@ public class LeaveRequestService {
     leaveRequestRepository.update(id, requestDate, startDate, endDate, status);
   }
 
-  public LeaveRequestEntity findById(long requestId) {
-    return leaveRequestRepository.findById(requestId);
+  @Transactional
+  public void delete(long id) {
+    leaveRequestRepository.delete(id);
   }
 }

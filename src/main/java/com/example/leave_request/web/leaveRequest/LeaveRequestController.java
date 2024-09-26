@@ -75,8 +75,10 @@ public class LeaveRequestController {
       default -> '0';
     };
 
+    // 削除処理
     if(status == '3') {
-      // 削除処理
+      leaveRequestService.delete(id);
+      return "redirect:/";
     }
 
     // 新規登録
