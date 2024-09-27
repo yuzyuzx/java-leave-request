@@ -9,38 +9,47 @@ import org.springframework.beans.BeanWrapperImpl;
 
 import java.time.LocalDate;
 
-public class DayCheckValidation implements ConstraintValidator<DayCheck, LeaveRequestForm> {
+public class DayCheckValidation implements ConstraintValidator<DayCheck, Object> {
 
-  private String message;
+  private String requestDate;
   private String startDate;
   private String endDate;
 
-//  @Override
-  public void initialize(DayCheck constraintAnnotation) {
-    this.message = constraintAnnotation.message();
-    this.startDate = "startDate";
-    this.endDate = "endDate";
+  @Override
+  public void initialize(DayCheck annotation) {
+    this.requestDate = annotation.requestDate();
+    this.startDate = annotation.startDate();
+    this.endDate = annotation.endDate();
   }
 
-//  @Override
-  public boolean isValid(LeaveRequestForm value, ConstraintValidatorContext context) {
+  @Override
+  public boolean isValid(Object value, ConstraintValidatorContext context) {
     BeanWrapper beanWrapper = new BeanWrapperImpl(value);
-    Object startDate = beanWrapper.getPropertyValue(this.startDate);
-    Object endDate = beanWrapper.getPropertyValue(this.endDate);
+    LocalDate requestDateValue = (LocalDate) beanWrapper.getPropertyValue(requestDate);
+    LocalDate startDateValue = (LocalDate) beanWrapper.getPropertyValue(startDate);
+    LocalDate endDateValue = (LocalDate) beanWrapper.getPropertyValue(endDate);
 
-    if (value.getRequestDate() == null || value.getStartDate() == null || value.getEndDate() == null) { //(2)
+    if (requestDateValue == null || startDateValue == null || endDateValue == null) {
       return false;
     }
 
-    if(value.getStartDate().isAfter(value.getEndDate())) {
+    // 申請日が開始日より未来の場合
+    if(requestDateValue.isAfter(startDateValue)) {
       context.disableDefaultConstraintViolation();
-      context.buildConstraintViolationWithTemplate(message).addPropertyNode(this.endDate).addConstraintViolation();
+      context.buildConstraintViolationWithTemplate("申請日は開始日または終了日より前の日付を指定してください")
+        .addPropertyNode(requestDate).addConstraintViolation();
       return false;
+    }
 
+    // 開始日が終了日より未来の場合
+    if(startDateValue.isAfter(endDateValue)) {
+      context.disableDefaultConstraintViolation();
+      context.buildConstraintViolationWithTemplate("終了日は開始日よりあとの日付を指定してください")
+        .addPropertyNode(endDate).addConstraintViolation();
+      return false;
     }
 
     return true;
-
-//    return value.getStartDate().isBefore(value.getEndDate());
   }
+
 }

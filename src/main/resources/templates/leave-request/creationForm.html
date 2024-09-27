@@ -10,7 +10,7 @@
   <a href="/" th:href="@{/}">トップに戻る</a>
 </div>
 <form th:method="post" th:object="${leaveRequestForm}">
-  <p th:text="*{requestDate}"></p>
+<!--  <p th:errors="*{leaveRequestForm}">(error)</p>-->
   <div>
     <label for="request_date">申請日: </label>
 <!--    th:fieldと共用できないのでformのプロパティと同名のnameを設定すること-->

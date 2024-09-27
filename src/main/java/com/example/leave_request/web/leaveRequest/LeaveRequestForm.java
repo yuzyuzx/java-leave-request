@@ -10,7 +10,7 @@ import java.time.LocalDate;
 // https://ti-tomo-knowledge.hatenablog.com/entry/2018/06/18/094526?_gl=1*h24bch*_gcl_au*NzI4MTk3NzY2LjE3MjIyNTA1NDI.
 
 @Data
-@DayCheck
+@DayCheck(requestDate = "requestDate", startDate = "startDate", endDate = "endDate")
 public class LeaveRequestForm implements Serializable {
 
   @NotNull(message = "申請日は入力必須です")
