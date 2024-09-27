@@ -13,19 +13,19 @@ import java.time.LocalDate;
 @DayCheck
 public class LeaveRequestForm implements Serializable {
 
-  @NotNull
+  @NotNull(message = "申請日は入力必須です")
 //  @DayCheck
   private LocalDate requestDate;
 
- @NotNull
+  @NotNull(message = "開始日は入力必須です")
 // @DayCheck
  private LocalDate startDate;
 
-  @NotNull
+  @NotNull(message = "終了日は入力必須です")
 //  @DayCheck
   private LocalDate endDate;
 
-  @NotNull
+//  @NotNull
   private String action;
 
   private char status;

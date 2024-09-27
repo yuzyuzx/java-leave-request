@@ -22,15 +22,15 @@ public class DayCheckValidation implements ConstraintValidator<DayCheck, LeaveRe
     this.endDate = "endDate";
   }
 
-  @Override
+//  @Override
   public boolean isValid(LeaveRequestForm value, ConstraintValidatorContext context) {
     BeanWrapper beanWrapper = new BeanWrapperImpl(value);
     Object startDate = beanWrapper.getPropertyValue(this.startDate);
     Object endDate = beanWrapper.getPropertyValue(this.endDate);
 
-//    if (value.getStartDate() == null || value.getEndDate() == null) { //(2)
-//      return false;
-//    }
+    if (value.getRequestDate() == null || value.getStartDate() == null || value.getEndDate() == null) { //(2)
+      return false;
+    }
 
     if(value.getStartDate().isAfter(value.getEndDate())) {
       context.disableDefaultConstraintViolation();
