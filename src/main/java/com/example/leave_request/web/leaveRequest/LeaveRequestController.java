@@ -2,6 +2,7 @@ package com.example.leave_request.web.leaveRequest;
 
 import com.example.leave_request.domain.leaveRequest.LeaveRequestEntity;
 import com.example.leave_request.domain.leaveRequest.LeaveRequestService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,6 +65,7 @@ public class LeaveRequestController {
 
   @PostMapping("/creationForm")
   public String dbOperation(@Validated LeaveRequestForm form, BindingResult bindingResult, @RequestParam("id") long id) {
+//  public String dbOperation(@Valid LeaveRequestForm form, BindingResult bindingResult, @RequestParam("id") long id) {
     // 日付チェック
 
     // 入力チェック
