@@ -21,10 +21,25 @@ public class LeaveRequestController {
 
   private final LeaveRequestService leaveRequestService;
 
-  @GetMapping("/{requestId}")
-  public String showDetail(@PathVariable("requestId") long requestId, Model model) {
-    model.addAttribute("leaveRequest", leaveRequestService.findById(requestId));
+  @GetMapping("/{id}")
+  public String showDetail(@ModelAttribute("approveForm") ApproveForm form, @PathVariable("id") long id) {
+    LeaveRequestEntity obj = leaveRequestService.findById(id);
+
+    if(obj == null) {
+      return "/";
+    }
+
+    form.setRequestDate(obj.getRequestDate());
+    form.setStartDate(obj.getStartDate());
+    form.setEndDate(obj.getEndDate());
+
     return "leave-request/detail";
+  }
+
+  @PostMapping("/{id}")
+  public String deleteFromDetailScreen(@Validated ApproveForm form, @PathVariable("id") long id) {
+    leaveRequestService.delete(id);
+    return "redirect:approved-list";
   }
 
   @GetMapping("/approved-list")
@@ -65,9 +80,6 @@ public class LeaveRequestController {
 
   @PostMapping("/creationForm")
   public String dbOperation(@Validated LeaveRequestForm form, BindingResult bindingResult, @RequestParam("id") long id) {
-//  public String dbOperation(@Valid LeaveRequestForm form, BindingResult bindingResult, @RequestParam("id") long id) {
-    // 日付チェック
-
     // 入力チェック
     if(bindingResult.hasErrors()) {
       return showCreationForm(form, id);
