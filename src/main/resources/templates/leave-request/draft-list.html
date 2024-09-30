@@ -11,8 +11,8 @@
 <div class="container text-center mt-3">
   <div class="row row-cols-auto">
     <a href="../index.html" th:href="@{/}">トップページ</a>
-    <a href="../leave-request/approved-list.html" th:href="@{/leave-request/approved-list}">承認済み一覧</a>
-    <a href="../leave-request/pending-approval-list.html" th:href="@{/leave-request/pending-approval-list}">承認待ち一覧</a>
+    <a href="../leave-request/approved-list.html" th:href="@{/leave-request/approved-list}">承認済み申請一覧</a>
+    <a href="../leave-request/pending-approval-list.html" th:href="@{/leave-request/pending-approval-list}">承認待ち申請一覧</a>
   </div>
 </div>
 
@@ -21,6 +21,8 @@
   <tr>
     <th>リンク</th>
     <th>申請日</th>
+    <th>ステータス</th>
+    <th>申請者</th>
   </tr>
   </thead>
   <tbody>
@@ -34,6 +36,8 @@
       </a>
     </td>
     <td th:text="${v.requestDate}">申請日</td>
+    <td>下書き</td>
+    <td>社員A</td>
   </tr>
   </tbody>
 </table>
