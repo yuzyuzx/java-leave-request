@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
 <head>
   <meta charset="UTF-8">
   <title>承認待ち申請一覧 | 休暇申請アプリケーション</title>
-  <style>
-    table {
-      border-collapse: collapse; /* セルの境界線をまとめる */
-      width: 100%; /* テーブルを100%幅に */
-    }
-    th, td {
-      border: 1px solid black; /* セルに黒い罫線を引く */
-      padding: 8px; /* セル内に余白を設定 */
-      text-align: left;
-    }
-  </style>
 </head>
 <body>
-<h1>承認待ち申請一覧</h1>
-<a href="../index.html" th:href="@{/}">トップページ</a>
-<a href="../leave-request/draft-list.html" th:href="@{/leave-request/draft-list}">下書き一覧</a>
-<a href="../leave-request/approved-list.html" th:href="@{/leave-request/approved-list}">承認済み一覧</a>
-<table>
+<h1 class="mt-3">承認待ち申請一覧</h1>
+
+<div class="container text-center mt-3">
+  <div class="row row-cols-auto">
+    <a href="../index.html" th:href="@{/}">トップページ</a>
+    <a href="../leave-request/draft-list.html" th:href="@{/leave-request/draft-list}">下書き一覧</a>
+    <a href="../leave-request/approved-list.html" th:href="@{/leave-request/approved-list}">承認済み一覧</a>
+  </div>
+</div>
+
+<table class="table mt-3">
   <thead>
   <tr>
-    <th>リンク</th>
+    <th></th>
     <th>申請日</th>
   </tr>
   </thead>
