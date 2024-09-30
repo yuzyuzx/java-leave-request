@@ -24,6 +24,7 @@
     <th>ステータス</th>
     <th>申請者</th>
     <th>承認者</th>
+    <th>承認日時</th>
   </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@
     <td>承認済み</td>
     <td>社員A</td>
     <td>管理者A</td>
+    <td th:text="${#temporals.format(v.updateTime, 'yyyy-MM-dd HH:mm')}"></td>
   </tr>
   </tbody>
 </table>

@@ -23,6 +23,7 @@
     <th>申請日</th>
     <th>ステータス</th>
     <th>申請者</th>
+    <th>更新日時</th>
   </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@
     <td th:text="${v.requestDate}">申請日</td>
     <td>下書き</td>
     <td>社員A</td>
+    <td th:text="${#temporals.format(v.updateTime, 'yyyy-MM-dd HH:mm')}"></td>
   </tr>
   </tbody>
 </table>
