@@ -125,13 +125,8 @@ public class LeaveRequestController {
   }
 
   @PostMapping("/approve-form")
-  public String dbOperation(@Validated ApproveForm form, BindingResult bindingResult, @RequestParam("id") long id) {
-    if(bindingResult.hasErrors()) {
-      return showApproveForm(form, id);
-    }
-
-    // 更新処理
-    leaveRequestService.update(id, form.getRequestDate(), form.getStartDate(), form.getEndDate(), '9');
+  public String deleteFromApproveForm(@Validated ApproveForm form, @RequestParam("id") long id) {
+    leaveRequestService.delete(id);
     return "redirect:/";
   }
 
