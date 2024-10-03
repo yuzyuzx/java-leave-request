@@ -3,16 +3,16 @@
       th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
 <head>
   <meta charset="UTF-8">
-  <title>承認済み申請一覧 | 休暇申請アプリケーション</title>
+  <title>承認却下申請一覧 | 休暇申請アプリケーション</title>
 </head>
 <body>
-<h1 class="mt-3">承認済み申請一覧</h1>
+<h1 class="mt-3">承認却下申請一覧</h1>
 
 <div class="container text-center mt-3">
   <div class="row row-cols-auto">
     <a href="../index.html" th:href="@{/}">トップページ</a>
-    <a href="../leave-request/pending-approval-list.html" th:href="@{/leave-request/pending-approval-list}">承認待ち申請一覧</a>
-    <a href="" th:href="@{/leave-request/approval-rejected-list}">承認却下申請一覧</a>
+    <a href="../leave-request/approved-list.html" th:href="@{/leave-request/approved-list}">承認済み申請一覧</a>
+    <a href="" th:href="@{/leave-request/pending-approval-list}">承認待ち申請一覧</a>
     <a href="../leave-request/draft-list.html" th:href="@{/leave-request/draft-list}">下書き申請一覧</a>
   </div>
 </div>
@@ -25,19 +25,21 @@
     <th>ステータス</th>
     <th>申請者</th>
     <th>承認者</th>
-    <th>承認日時</th>
+    <th>却下日時</th>
   </tr>
   </thead>
   <tbody>
-  <tr th:each="v : ${approvedLeaveRequestList}">
+  <tr th:each="v : ${pendingApprovalList}">
     <td>
-      <a href="./detail.html"
-        th:href="@{/leave-request/{requestId}(requestId=${v.id})}" th:text="詳細画面" >
-        詳細画面
+      <a
+        href="./creationForm.html"
+        th:href="@{/leave-request/creationForm(id=${v.id})}"
+        th:text="編集画面">
+        編集画面
       </a>
     </td>
     <td th:text="${v.requestDate}">申請日</td>
-    <td>承認済み</td>
+    <td>承認却下</td>
     <td>社員A</td>
     <td>管理者A</td>
     <td th:text="${#temporals.format(v.updateTime, 'yyyy-MM-dd HH:mm')}"></td>

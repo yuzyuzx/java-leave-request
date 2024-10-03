@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -42,8 +44,11 @@ public class AdminController {
 
   @PostMapping("/approve-form")
   public String dbOperation(@Validated ApproveForm form, BindingResult bindingResult, @RequestParam("id") long id) {
-    if(bindingResult.hasErrors()) {
-      return showApproveForm(form, id);
+
+    if(Objects.equals(form.getAction(), "reject")) {
+      leaveRequestService.update(id, form.getRequestDate(), form.getStartDate(), form.getEndDate(), '3');
+      return "redirect:/admin/pending-approval-list";
+
     }
 
     leaveRequestService.update(id, form.getRequestDate(), form.getStartDate(), form.getEndDate(), '9');

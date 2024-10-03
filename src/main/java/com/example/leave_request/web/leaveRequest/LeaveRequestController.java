@@ -60,6 +60,12 @@ public class LeaveRequestController {
     return "leave-request/pending-approval-list";
   }
 
+  @GetMapping("/approval-rejected-list")
+  public String approvalRejectedList(Model model) {
+    model.addAttribute("pendingApprovalList", leaveRequestService.fetchRequestsByStatus('3'));
+    return "leave-request/approval-rejected-list";
+  }
+
   /**
    * 新規作成時のidパラメータは「0」にしている
    */
@@ -86,14 +92,13 @@ public class LeaveRequestController {
     }
 
     char status = switch(form.getAction()) {
-      case "draft" -> '1';
       case "approve" -> '2';
-      case "delete" -> '3';
-      default -> '0';
+      case "delete" -> '0';
+      default -> '1'; // draft（下書き）
     };
 
     // 削除処理
-    if(status == '3') {
+    if(status == '0') {
       leaveRequestService.delete(id);
       return "redirect:/";
     }
